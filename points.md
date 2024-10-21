@@ -1,0 +1,6 @@
+- mongoose:
+    - `mongoose.Schema`: Used for defining the schema structure (capitalized).
+    - `mongoose.model`: Used for creating a model from the schema (lowercase).
+    - `TS` in mongoose, see note.ts
+- `envalid`: see readme
+- 
