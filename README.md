@@ -50,3 +50,13 @@ Each validation function accepts an (optional) object with the following attribu
 `desc` - A string that describes the env var.
 `example` - An example value for the env var.
 `docs` - A URL that leads to more detailed documentation about the env var.
+
+# A crucial error debugging point in TS:
+- there could be a type mismatch due to a version differnece between, npm i @types/express and npm i express, both commands install the latest versions which could be problematic, for example:
+ ```sh
+ npm list express @types/express                   ─╯
+
+backend@1.0.0 /Users/yashmeena/Desktop/stuff/git repos/mern-with-typescript-practice/backend
+├── @types/express@5.0.0
+└── express@4.21.1
+```
