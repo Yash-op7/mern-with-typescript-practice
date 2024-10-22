@@ -16,4 +16,5 @@ const noteSchema = new mongoose.Schema({
 
 type Note = mongoose.InferSchemaType<typeof noteSchema>;
 
-export default mongoose.model<Note>("Note", noteSchema);
+const Note = mongoose.model<Note>("Note", noteSchema);
+export default Note;
