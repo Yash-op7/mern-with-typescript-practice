@@ -140,3 +140,10 @@ const updateNote: RequestHandler = (req, res) => {
 ```ts
 error: (error as Error).message
 ```
+
+# frontend
+- in the frontend before we ƒetch notes, we should create a `note` interface, so inside src/ create a models/note.ts file which exports a note interface, then in App.tsx:
+before: `const [notes, setNotes] = useState([]);`
+after: `const [notes, setNotes] = useState<Note[]>([])`
+
+- `export function NoteComponent({ note }: { note: Note }) {`
