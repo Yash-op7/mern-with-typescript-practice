@@ -31,10 +31,11 @@ const createNote: RequestHandler<
   //   const { title, text } = req.body;
   const { title, text = "No Text Content" } = req.body; // Set a default value for text
   try {
-    await Note.create({ title, text });
+    const note = await Note.create({ title, text });
     return res
       .json({
         message: "✅ New Note successfully created.",
+        note
       })
       .status(201);
   } catch (error) {
@@ -58,6 +59,7 @@ const updateNote: RequestHandler = async (req, res) => {
     await Note.findByIdAndUpdate(note._id, updatedNote);
     return res.status(200).json({
       message: "Updated the note successfully.",
+      note: updatedNote
     });
   } catch (error) {
     return res.status(500).json({

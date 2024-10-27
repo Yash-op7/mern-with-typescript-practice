@@ -1,7 +1,8 @@
 import { useEffect, useState } from "react";
 import {getNotes} from "./api/notes";
 import { Note as NoteModel } from "./models/note";
-import { Note } from "./components/Note";
+import NewNote from "./components/NewNote";
+import Note from "./components/Note";
 
 export default function App() {
   const [notes, setNotes] = useState<NoteModel[]>([]);
@@ -15,6 +16,7 @@ export default function App() {
       {notes.map((note) => {
         return <Note key={note._id} note={note} setNotes={setNotes} />;
       })}
+      <NewNote setNotes={setNotes} />
     </div>
   );
 }
