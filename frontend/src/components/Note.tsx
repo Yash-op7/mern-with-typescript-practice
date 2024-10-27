@@ -43,9 +43,11 @@ function Note({ note, setNotes }: NoteProps) {
       return;
     }
     setNotes((notes: NoteModel[]) => {
-      const filteredNotes = notes.filter((n) => n._id !== note._id);
-      filteredNotes.push(updatedNote);
-      return filteredNotes;
+      const idx = notes.findIndex((n) => n._id === note._id);
+      // filteredNotes.push(updatedNote);
+      const notes2 = [...notes];
+      notes2[idx] = updatedNote;
+      return notes2;
     });
   }
 
@@ -81,17 +83,20 @@ function Note({ note, setNotes }: NoteProps) {
                 Delete
               </Button>
               <Button
-                variant="outline"
-                className="text-md"
-                onClick={() => {
-                  if(updateMode) {
-                    updateNote();
-                  }
-                  setUpdateMode((prev) => !prev);
-                }}
-              >
-                Update
-              </Button>
+  variant="outline"
+  className={`text-md border-2 transition-all duration-200 ${
+    updateMode ? 'border border-gray-300 shadow-inner bg-gray-200' : 'border border-gray-300 shadow-lg'
+  } hover:bg-gray-200`}
+  onClick={() => {
+    if (updateMode) {
+      updateNote();
+    }
+    setUpdateMode((prev) => !prev);
+  }}
+>
+  Update
+</Button>
+
             </div>
           </CardTitle>
           <CardDescription>
@@ -109,7 +114,7 @@ function Note({ note, setNotes }: NoteProps) {
             <textarea
               name="text"
               placeholder={text}
-              className="border rounded p-2"
+              className="border rounded p-2 w-96"
               rows={2}
               value={text}
               onChange={(e) => setText(e.target.value)}
