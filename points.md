@@ -147,3 +147,5 @@ before: `const [notes, setNotes] = useState([]);`
 after: `const [notes, setNotes] = useState<Note[]>([])`
 
 - `export function NoteComponent({ note }: { note: Note }) {`
+
+- In JavaScript, all async functions automatically return a Promise. If you return a value from an async function, that value is wrapped in a resolved Promise. If an error is thrown, it returns a Promise that is rejected with that error.

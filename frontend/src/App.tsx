@@ -1,5 +1,5 @@
 import { useEffect, useState } from "react";
-import axios from "axios";
+import {getNotes} from "./api/notes";
 import { Note as NoteModel } from "./models/note";
 import { Note } from "./components/Note";
 
@@ -7,23 +7,14 @@ export default function App() {
   const [notes, setNotes] = useState<NoteModel[]>([]);
 
   useEffect(() => {
-    async function fetchNotes() {
-      const response = await axios.get('http://localhost:5000/api/notes');
-      return response.data;
-    }
-
-    fetchNotes().then((data) => setNotes(data)).catch((error) => {
-      console.error("Error fetching notes:", error);
-    });
+    getNotes().then((notes) => setNotes(notes));
   }, []);
 
   return (
-    <div>
-      {notes.map((note) => (
-        <Note key={note._id} note={note} />
-      ))}
+    <div className="grid grid-cols-1 sm:grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4">
+      {notes.map((note) => {
+        return <Note key={note._id} note={note} setNotes={setNotes} />;
+      })}
     </div>
   );
 }
-
-
