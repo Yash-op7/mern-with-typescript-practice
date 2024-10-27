@@ -55,6 +55,7 @@ const NewNote = ({ setNotes }: NewNoteProps) => {
               type="text"
               name="title"
               placeholder="Enter Title"
+              className="font-bold"
             />
 
             <textarea
